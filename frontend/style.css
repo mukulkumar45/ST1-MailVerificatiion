@@ -1,0 +1,89 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f3f3;
+    margin: 0;
+    height: 100vh;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 25px;
+    font-style: normal;
+    color: rgb(235, 233, 233);
+    text-decoration: underline;
+    gap: 100px;
+    background-color: rgb(77, 113, 164);
+    border: 2px solid black;
+    height: 150px;
+}
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items:first center;
+    gap: 20px;
+}
+.list-con{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 200px;
+    margin-top: 50px;
+    
+}
+.searchedStudent{
+    font-size: 25px;
+    font-style: italic;
+    text-decoration: underline;
+    font-weight: 400;
+   
+}
+
+.left-list{
+    font-size: 20px;
+    font-weight: 400;
+    color: black;
+}
+.left-list .del{
+   
+    border:solid black;
+    border-radius: 2px;
+    font-weight: bold;
+    background-color: rgb(105, 128, 221);
+    color: whitesmoke;
+}
+.left-list .update {
+
+    border:solid black ;
+    border-radius: 2px;
+    font-weight: bold;
+    background-color: rgb(105, 128, 221);
+    color: whitesmoke;
+}
+input{
+    border: solid black;
+    width: 150px;
+    height: 40px;
+    background-color: rgb(242, 236, 236);
+    border-radius: 5px;
+    padding-left: 5px;
+}
+#search-btn{
+    box-shadow: 10px;
+    background-color: rgb(105, 128, 221);
+    color: whitesmoke;
+    border: solid black;
+    border-radius: 5px;
+    height: 40px;
+}
+#get-students{
+    box-shadow: 10px;
+    width: 100px;
+    background-color: rgb(105, 128, 221);
+    color: whitesmoke;
+    border: solid Black;
+    border-radius: 5px;
+    height: 40px;
+}

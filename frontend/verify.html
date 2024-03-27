@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verification</title>
+    <link rel="stylesheet" href="./verify.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>ENTER OTP</h1>
+      <div class="userInput">
+        <input
+          type="text"
+          id="ist"
+          maxlength="1"
+          onkeyup="clickEvent(this,'sec','ist')"
+        />
+        <input
+          type="text"
+          id="sec"
+          maxlength="1"
+          onkeyup="clickEvent(this,'third','ist')"
+        />
+        <input
+          type="text"
+          id="third"
+          maxlength="1"
+          onkeyup="clickEvent(this,'fourth','sec')"
+        />
+        <input
+          type="text"
+          id="fourth"
+          maxlength="1"
+          onkeyup="clickEvent(this,'fourth','third')"
+        />
+      </div>
+      <button id="mailbtn" onclick="chalJaBhai()">CONFIRM</button>
+
+      <p>--------- or ---------</p>
+      <p>Verify through link sent to your email</p>
+    </div>
+    <script>
+      function clickEvent(first, next, prev) {
+        if (first.value.length) {
+          document.getElementById(next).focus();
+        } else {
+          document.getElementById(prev).focus();
+        }
+      }
+
+      const first = document.querySelector("#ist");
+      const second = document.querySelector("#sec");
+      const third = document.querySelector("#third");
+      const fourth = document.querySelector("#fourth");
+
+      function createNumber() {
+        const one = first.value;
+        const sec = second.value;
+        const thi = third.value;
+        const fou = fourth.value;
+
+        const number = 1000 * one + 100 * sec + 10 * thi + 1 * fou;
+        return number;
+      }
+
+
+      async function chalJaBhai() {
+        console.log("click huya");
+        const number = createNumber();
+        await verifyOtp(number);
+      };
+
+      async function verifyOtp(otp) {
+        console.log(otp);
+        try {
+          const response = await fetch("http://localhost:3000/verify-otp", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ otp }),
+          });
+
+          console.log("Response status:", response.status); // Log response status
+
+          if (response.ok) {
+            const result = await response.json();
+
+            if (result.success) {
+              // OTP is valid, proceed with login or other actions
+              console.log("OTP verification successful");
+              alert("Verification Successful, You Can now Login")
+              window.location.href = "/login";
+            } else {
+              // OTP is invalid, display an error message
+              alert("Invalid OTP, Please check again");
+              console.error("Invalid OTP");
+            }
+          } else {
+            // Handle non-successful response (e.g., 404, 500, etc.)
+            console.error(
+              `Error during OTP verification: ${response.status} - ${response.statusText}`
+            );
+          }
+        } catch (err) {
+          console.log("Error:", err);
+        }
+      }
+    </script>
+  </body>
+</html>

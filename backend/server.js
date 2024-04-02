@@ -16,7 +16,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/StudentsApi');
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cookieParser());
-
 app.use(session({
     secret: 'Ye Project chori ka hai',
     saveUninitialized: true,
@@ -83,8 +82,8 @@ app.get('/stu',(req,res) => {
     const loggedIn = req.session.loggedIn;
     if(loggedIn) {
         const filepath = path.join(__dirname,'../frontend/students.html');
-        // let htmlFile = fs.readFileSync(filepath, 'utf8');
-        // htmlFile = htmlFile.replace('<<USERNAME>>', username);
+        let htmlFile = fs.readFileSync(filepath, 'utf8');
+        htmlFile = htmlFile.replace('<<USERNAME>>', username);
         res.sendFile(filepath);
     }else{
         res.redirect('/login');

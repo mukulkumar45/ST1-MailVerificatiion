@@ -4,7 +4,7 @@ const getButton = document.querySelector("#get-students");
 const input = document.querySelector("input");
 const div = document.querySelector(".searchedStudent");
 const PassKey = "YouAreVerified";
-const url = "http://localhost:3000/studentsDetails";
+
 const logout = document.querySelector(".logout");
 const mailbtn = document.querySelector("#mailbtn");
 
